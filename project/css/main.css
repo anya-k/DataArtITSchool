@@ -235,7 +235,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     slider Start
 --*/
 #slider {
-  padding: 50px 0px;
+  padding: 100px 0px;
 }
 #slider .block {
   padding: 0px 40px;
@@ -287,6 +287,16 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
   line-height: 26px;
   padding: 40px 0px;
 }
+#about-us .block form .form-control {
+  width: 1150px;
+  background: #fff;
+  opacity: 0.9;
+  border: none;
+  height: 125px;
+  border-radius: 0px;
+  font-size: 15px;
+}
+
 /*--
     blog Start
 --*/
@@ -627,7 +637,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     footer Start
 --*/
 #footer {
-  padding: 70px 0px;
+  padding: 20px 0px;
 }
 #footer .block h3 {
   color: #2E2E2E;
@@ -678,7 +688,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 #footer .block .social-media-link h3 {
   font-size: 20px;
   padding-bottom: 15px;
-  padding-top: 30px;
+  padding-top: 0px;
 }
 #footer .block .social-media-link h3 span {
   color: #FF4F02;

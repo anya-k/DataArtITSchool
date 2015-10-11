@@ -27,7 +27,7 @@ function showPosition(position) {
 }
 var curPos;
 function getCurrentPosition() {
-  curPos = { latitude: "46.455733", longitude: "30.729416"};
+  curPos = { latitude: "46.471526", longitude: "30.740570"};
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   }
@@ -91,7 +91,7 @@ function generateRating() {
 
       var a1 = document.createElement('a');
       a1.setAttribute('href', "information.html");
-      a1.innerHTML = users[i].name + " - " + users[i].id * Math.random();
+      a1.innerHTML = users[i].name + " - " + (users[i].id * Math.random()).toFixed(2);
 
       h2.appendChild(a1);
       divItem.appendChild(h2);
