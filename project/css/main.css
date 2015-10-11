@@ -48,7 +48,7 @@ a:active,
 a:focus,
 a:active {
   text-decoration: none !important;
-  font-size: 15px;
+  font-size: 25px;
 }
 /*============== Mixins style start ================*/
 .overlay-effect {
@@ -420,6 +420,19 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
   background: transparent;
   color: #ff530a;
   border: 1px solid #ff530a;
+}
+/*--
+    mapholder
+--*/
+#mapholder {
+  width: auto;
+  height: 380px;
+}
+/*--
+    list Start
+--*/
+#list {
+  padding: 70px 0px;
 }
 /*--
     price Start
