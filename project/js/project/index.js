@@ -16,14 +16,14 @@ var users = [
   { id: '6', name: 'Restaurant 6', latitude: "46.474533",
     longitude: "30.757659", text:'about6' }
 ];
-//46.427698, 30.757144
-function getLocation() {
-  var map = document.getElementById("mapholder");
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
-  } else {
-    map.innerHTML = "Geolocation is not supported by this browser.";
-  }
+
+function showPosition(position) {
+  curPos = position.coords;
+  /*setTimeout(
+    (function() {
+    if (map) {
+    map.center = new google.maps.LatLng(curPos.latitude, curPos.longitude);
+  }})(), 5000);*/
 }
 var curPos;
 function getCurrentPosition() {
@@ -32,6 +32,7 @@ function getCurrentPosition() {
     navigator.geolocation.getCurrentPosition(showPosition);
   }
 }
+var map;
 function multiplyMarker() {
   var mapholder = document.getElementById('mapholder');
   // map options
@@ -44,13 +45,7 @@ function multiplyMarker() {
   };
 
   // init map
-  var map = new google.maps.Map(mapholder, options);
-
-  // NY and CA sample Lat / Lng
-  var southWest = new google.maps.LatLng(40.744656, -74.005966);
-  var northEast = new google.maps.LatLng(34.052234, -118.243685);
-  var lngSpan = northEast.lng() - southWest.lng();
-  var latSpan = northEast.lat() - southWest.lat();
+  map = new google.maps.Map(mapholder, options);
 
   // set multiple marker
   for (var i = 0; i < users.length; i++) {
@@ -65,9 +60,12 @@ function multiplyMarker() {
     (function(marker, i) {
       // add click event
       google.maps.event.addListener(marker, 'click', function() {
+        /*
         infowindow = new google.maps.InfoWindow({
           content: 'Hello, World!!'
         });
+        */
+        window.location.href = "information.html";
         infowindow.open(map, marker);
       });
     })(marker, i);
@@ -75,9 +73,7 @@ function multiplyMarker() {
 }
 
 
-function showPosition(position) {
-  curPos = position.coords;
-}
+
 
 function generateRating() {
   var ulRating = document.getElementById("list").getElementsByTagName('ul')[0];
@@ -94,8 +90,8 @@ function generateRating() {
       //h2.innerHTML = users[i].name;
 
       var a1 = document.createElement('a');
-      a1.setAttribute('href', "#home");
-      a1.innerHTML = users[i].name;
+      a1.setAttribute('href', "information.html");
+      a1.innerHTML = users[i].name + " - " + users[i].id * Math.random();
 
       h2.appendChild(a1);
       divItem.appendChild(h2);

@@ -34,7 +34,7 @@ div.stars {
     color: #ff7700;
     text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
 }
-
+/*
 .rating:not(:checked) > label:hover,
 .rating:not(:checked) > label:hover ~ label {
  color: gold;
@@ -54,4 +54,4 @@ div.stars {
     position:relative;
     top:2px;
     left:2px;
-}
+}*/

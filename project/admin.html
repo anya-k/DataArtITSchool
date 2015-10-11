@@ -66,13 +66,20 @@
                                   <a class="navbar-brand" href="#">
                                     <img src="images/logo.png" alt="Logo">
                                   </a>
+                                <ul class="social-media-link">
+                                    <a href="index.html">
+                                        <img class="up-icon" src="images/home.png" alt="">
+                                    </a>
+                                    <a href="admin.html">
+                                        <img class="up-icon" src="images/user.png" alt="">
+                                    </a>
+                                </ul>
 
                             </div>
 
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                               <ul class="nav navbar-nav navbar-right" id="top-nav">
-                                <li><a href="index.html">Home</a></li>
                                 <li><a href="#home">Rating</a></li>
                                 <li><a href="#about-us">Review</a></li>
                                 <li><a href="#slider">Photo</a></li>
@@ -86,7 +93,6 @@
         </div><!-- .container close -->
 	</nav><!-- header close -->
 
-
     <section id="contact-us">
         <div class="container">
             <div class="row">
@@ -97,18 +103,13 @@
                 </div>
                 <div class="col-md-4">
                     <div class="stars block wow fadeInLeft" data-wow-delay="200ms">
-                        <form action="">
-                            <input class="star star-5" id="star-5" type="radio" name="star"/>
-                            <label class="star star-5" for="star-5"></label>
-                            <input class="star star-4" id="star-4" type="radio" name="star"/>
-                            <label class="star star-4" for="star-4"></label>
-                            <input class="star star-3" id="star-3" type="radio" name="star"/>
-                            <label class="star star-3" for="star-3"></label>
-                            <input class="star star-2" id="star-2" type="radio" name="star"/>
-                            <label class="star star-2" for="star-2"></label>
-                            <input class="star star-1" id="star-1" type="radio" name="star"/>
-                            <label class="star star-1" for="star-1"></label>
-                        </form>
+                        <fieldset class="rating one">
+                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!"><span>&#9733</span></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good"><span>&#9733</span></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh"><span>&#9733</span></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad"><span>&#9733</span></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time"><span>&#9733</span></label>
+                        </fieldset>
                     </div>
                 </div>
             </div>
@@ -120,18 +121,13 @@
                 </div>
                 <div class="col-md-4">
                     <div class="stars block wow fadeInLeft" data-wow-delay="300ms">
-                    <form action="">
-                            <input class="star star-5" id="star-5" type="radio" name="star"/>
-                            <label class="star star-5" for="star-5"></label>
-                            <input class="star star-4" id="star-4" type="radio" name="star"/>
-                            <label class="star star-4" for="star-4"></label>
-                            <input class="star star-3" id="star-3" type="radio" name="star"/>
-                            <label class="star star-3" for="star-3"></label>
-                            <input class="star star-2" id="star-2" type="radio" name="star"/>
-                            <label class="star star-2" for="star-2"></label>
-                            <input class="star star-1" id="star-1" type="radio" name="star"/>
-                            <label class="star star-1" for="star-1"></label>
-                        </form>
+                        <fieldset class="rating two">
+                            <input type="radio" id="star5-1" name="ratingtwo" value="5" /><label for="star5-1" title="Rocks!"><span>&#9733</span></label>
+                            <input type="radio" id="star4-1" name="ratingtwo" value="4" /><label for="star4-1" title="Pretty good"><span>&#9733</span></label>
+                            <input type="radio" id="star3-1" name="ratingtwo" value="3" /><label for="star3-1" title="Meh"><span>&#9733</span></label>
+                            <input type="radio" id="star2-1" name="ratingtwo" value="2" /><label for="star2-1" title="Kinda bad"><span>&#9733</span></label>
+                            <input type="radio" id="star1-1" name="ratingtwo" value="1" /><label for="star1-1" title="Sucks big time"><span>&#9733</span></label>
+                        </fieldset>
                     </div>
                 </div>
             </div>
@@ -143,18 +139,13 @@
                 </div>
                 <div class="col-md-4">
                     <div class="stars block wow fadeInLeft" data-wow-delay="400ms">
-                    <form action="">
-                            <input class="star star-5" id="star-5" type="radio" name="star"/>
-                            <label class="star star-5" for="star-5"></label>
-                            <input class="star star-4" id="star-4" type="radio" name="star"/>
-                            <label class="star star-4" for="star-4"></label>
-                            <input class="star star-3" id="star-3" type="radio" name="star"/>
-                            <label class="star star-3" for="star-3"></label>
-                            <input class="star star-2" id="star-2" type="radio" name="star"/>
-                            <label class="star star-2" for="star-2"></label>
-                            <input class="star star-1" id="star-1" type="radio" name="star"/>
-                            <label class="star star-1" for="star-1"></label>
-                        </form>
+                        <fieldset class="rating three">
+                            <input type="radio" id="star5-2" name="ratingthree" value="5" /><label for="star5-2" title="Rocks!"><span>&#9733</span></label>
+                            <input type="radio" id="star4-2" name="ratingthree" value="4" /><label for="star4-2" title="Pretty good"><span>&#9733</span></label>
+                            <input type="radio" id="star3-2" name="ratingthree" value="3" /><label for="star3-2" title="Meh"><span>&#9733</span></label>
+                            <input type="radio" id="star2-2" name="ratingthreeo" value="2" /><label for="star2-2" title="Kinda bad"><span>&#9733</span></label>
+                            <input type="radio" id="star1-2" name="ratingthree" value="1" /><label for="star1-2" title="Sucks big time"><span>&#9733</span></label>
+                        </fieldset>
                     </div>
                 </div>
             </div>
