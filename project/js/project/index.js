@@ -19,11 +19,12 @@ var users = [
 
 function showPosition(position) {
   curPos = position.coords;
-  /*setTimeout(
-    (function() {
-    if (map) {
-    map.center = new google.maps.LatLng(curPos.latitude, curPos.longitude);
-  }})(), 5000);*/
+  console.log("showPosition");
+  if (map) {
+    console.log("map find");
+    map.setCenter(new google.maps.LatLng(curPos.latitude, curPos.longitude));
+    console.log("map.center ", map.center);
+  }
 }
 var curPos;
 function getCurrentPosition() {
@@ -46,7 +47,7 @@ function multiplyMarker() {
 
   // init map
   map = new google.maps.Map(mapholder, options);
-
+  console.log("map.center init", map.center);
   // set multiple marker
   for (var i = 0; i < users.length; i++) {
     // init markers
@@ -60,11 +61,6 @@ function multiplyMarker() {
     (function(marker, i) {
       // add click event
       google.maps.event.addListener(marker, 'click', function() {
-        /*
-        infowindow = new google.maps.InfoWindow({
-          content: 'Hello, World!!'
-        });
-        */
         window.location.href = "information.html";
         infowindow.open(map, marker);
       });
