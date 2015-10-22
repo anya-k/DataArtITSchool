@@ -445,15 +445,26 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 /*--
     mapholder
 --*/
+#map {
+
+}
+.container-half-left {
+  float:left;
+  width:50%;
+}
+.container-half-right {
+  float:right;
+  width:50%;
+  padding-right:20px;
+}
 #mapholder {
-  width: auto;
   height: 350px;
 }
 /*--
     list Start
 --*/
 #list {
-  padding: 70px 0px;
+  padding: 0px 0px;
 }
 /*--
     price Start

@@ -2,9 +2,8 @@
  * Created by Anya on 08.10.2015.
  */
 var users = [
-  { id: '1', name: 'Restaurant 1', latitude: "46.428172",
-    longitude: "30.745471",
-  text:'about1' },
+  { id: '1', name: 'Restaurant 1', latitude: "46.408882",
+    longitude: "30.715387",  text:'about1' },
   { id: '2', name: 'Restaurant 2', latitude: "46.463183",
     longitude: "30.725386", text:'about2' },
   { id: '3', name: 'Restaurant 3', latitude: "46.427938",
@@ -14,7 +13,17 @@ var users = [
   { id: '5', name: 'Restaurant 5', latitude: "46.480917",
     longitude: "30.713885", text:'about5' },
   { id: '6', name: 'Restaurant 6', latitude: "46.474533",
-    longitude: "30.757659", text:'about6' }
+    longitude: "30.757659", text:'about6' },
+  { id: '7', name: 'Restaurant 7', latitude: "46.454551",
+    longitude: "30.686720", text:'about7' },
+  { id: '8', name: 'Restaurant 8', latitude: "46.408290",
+    longitude: "30.736501", text:'about8' },
+  { id: '9', name: 'Restaurant 9', latitude: "46.421072",
+    longitude: "30.758989", text:'about9' },
+  { id: '10', name: 'Restaurant 10', latitude: "46.396571",
+    longitude: "30.731866", text:'about10' },
+  { id: '11', name: 'Restaurant 11', latitude: "46.433969",
+    longitude: "30.717275", text:'about11' }
 ];
 
 function showPosition(position) {
@@ -87,7 +96,7 @@ function generateRating() {
 
       var a1 = document.createElement('a');
       a1.setAttribute('href', "information.html");
-      a1.innerHTML = users[i].name + " - " + (users[i].id * Math.random()).toFixed(2);
+      a1.innerHTML = users[i].name;// + " - " + (users[i].id * Math.random()).toFixed(2);
 
       h2.appendChild(a1);
       divItem.appendChild(h2);
