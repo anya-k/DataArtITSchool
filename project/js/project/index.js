@@ -81,7 +81,7 @@ function multiplyMarker() {
 
 
 function generateRating() {
-  var ulRating = document.getElementById("list").getElementsByTagName('ul')[0];
+  var ulRating = document.getElementById("rating-list");
 
   function updateUlRaiting() {
     var i;
@@ -97,13 +97,17 @@ function generateRating() {
       var a1 = document.createElement('a');
       a1.setAttribute('href', "information.html");
       a1.innerHTML = users[i].name;// + " - " + (users[i].id * Math.random()).toFixed(2);
-
+      //el.innerHTML = users[i].name;
       h2.appendChild(a1);
-      divItem.appendChild(h2);
+
+      //divItem.appendChild(h2);
       el.appendChild(divItem);
+      el.appendChild(h2);
+      ulRating.classList.add("double");
       ulRating.appendChild(el);
 
     }
+
   }
   updateUlRaiting();
 }

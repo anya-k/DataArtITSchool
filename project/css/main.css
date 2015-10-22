@@ -456,6 +456,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
   float:right;
   width:50%;
   padding-right:20px;
+  padding-top: 20px;
 }
 #mapholder {
   height: 350px;
@@ -491,6 +492,14 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 }
 #price .block .pricing-list ul li .item .item-title {
   position: relative;
+  display: block;
+  float: left;
+  width: 45%;
+}
+.double  {
+  -webkit-column-count:3;
+  -moz-column-count:3;
+  column-count:3;
 }
 #price .block .pricing-list ul li .item .item-title h2 {
   display: inline-block;
