@@ -11,14 +11,17 @@ class Category(models.Model):
             MaxValueValidator(100)
         ])
 
+    def __unicode__(self):
+        return self.name
+
 
 class Rating(models.Model):
     STARS_CHOICES = (
-        ('s1', 1),
-        ('s2', 2),
-        ('s3', 3),
-        ('s4', 4),
-        ('s5', 5),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
     )
     restaurant = models.ForeignKey(Restaurant)
     category = models.ForeignKey(Category)
