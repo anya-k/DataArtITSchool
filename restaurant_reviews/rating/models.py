@@ -26,3 +26,6 @@ class Rating(models.Model):
     restaurant = models.ForeignKey(Restaurant)
     category = models.ForeignKey(Category)
     value = models.IntegerField(choices=STARS_CHOICES)
+
+    class Meta:
+        unique_together = (('restaurant', 'category'),)
