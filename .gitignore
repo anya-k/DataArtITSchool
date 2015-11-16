@@ -1,0 +1,18 @@
+# python precompiled files:
+*.pyc
+*.pyo
+
+### Intellij ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
+
+*.iml
+
+## Directory-based project format:
+.idea/
+
+# temp gedit
+*~
+
+# temp log
+*.log
+
