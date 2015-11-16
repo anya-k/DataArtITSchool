@@ -14,5 +14,8 @@ class Photo(models.Model):
     restaurant = models.ForeignKey(Restaurant)
     photo = models.ImageField()
 
+    def __unicode__(self):
+        return self.restaurant.name
+
 
 
