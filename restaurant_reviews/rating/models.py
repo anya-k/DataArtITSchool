@@ -13,6 +13,13 @@ class Category(models.Model):
 
 
 class Rating(models.Model):
+    STARS_CHOICES = (
+        ('s1', 1),
+        ('s2', 2),
+        ('s3', 3),
+        ('s4', 4),
+        ('s5', 5),
+    )
     restaurant = models.ForeignKey(Restaurant)
     category = models.ForeignKey(Category)
-    value = models.IntegerField(choices=[range(1, 5)])
+    value = models.IntegerField(choices=STARS_CHOICES)
