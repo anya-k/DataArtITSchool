@@ -22,6 +22,6 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   marker.setMap(map);
 
-};
+}
 /* end google maps -----------------------------------------------------*/
 });
