@@ -13,14 +13,35 @@
 <div class="container-fluid" id="main">
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" id="left">
-        <h2>Популярные рестораны</h2>
         <!-- item list -->
+      {% if object_list %}
+        <h2>Популярные рестораны</h2>
+      {% for restaurant in object_list %}
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="panel panel-default">
+                  <div class="panel-heading"><a href="">{{ restaurant.name }}</a></div>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                  Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+                  dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+                  Aliquam in felis sit amet augue.</p>
+
+              <hr>
+          </div>
+
+        </div>
+      {% endfor %}
+      {% else %}
+        <p><br />Пока нет ресторанов</p>
+      {% endif %}
+
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading"><a href="">Item heading</a></div>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                <p>11Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
                     Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
                     dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
                     Aliquam in felis sit amet augue.</p>

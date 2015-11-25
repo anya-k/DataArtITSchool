@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %} Rating {% endblock title %}
+
+
+<!--{% block nav_class_contact %}active{% endblock %}-->
+
+
+{% block content %}
+<div class="container-fluid" id="main">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+        <!-- item list -->
+      {% if object_list %}
+        <h2>Популярные рестораны</h2>
+      {% for restaurant in object_list %}
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="panel panel-default">
+                  <div class="panel-heading"><a href="">{{ restaurant.name }}</a></div>
+              </div>
+              <p>{{ restaurant.text_review }}</p>
+              <hr>
+          </div>
+
+        </div>
+      {% endfor %}
+      {% else %}
+        <p><br />Пока нет ресторанов</p>
+      {% endif %}
+
+        <!-- /item list -->
+
+    </div>
+
+    <div id="map-canvas" class="col-xs-push-1 col-xs-10 col-sm-push-0 col-sm-4">
+      <!--map-canvas will be postioned here-->
+      <div class="row">
+      </div>
+    </div>
+
+</div>
+<!-- end template -->
+{% endblock content %}
