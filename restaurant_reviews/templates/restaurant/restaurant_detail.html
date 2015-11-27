@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 
-{% block title %} Rating {% endblock title %}
+{% block title %} Restaurant review {% endblock title %}
 
 
 <!--{% block nav_class_contact %}active{% endblock %}-->
@@ -12,24 +12,21 @@
 <div class="container-fluid" id="main">
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
         <!-- item list -->
-      {% if object_list %}
-        <h2>Лучшие рестораны</h2>
-      {% for restaurant in object_list %}
+      {% if restaurant %}
       <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <a href="{% url 'restaurant:detail' restaurant.id %}">{{ restaurant.name }}</a>
-                  </div>
-              </div>
+            <div class="page-header">
+              <h1>{{ restaurant.name }} <small></small></h1>
+            </div>
               <p>{{ restaurant.text_review }}</p>
               <hr>
+
+            <input id="input-1" class="rating" data-min="0" data-max="5" data-step="1">
           </div>
 
         </div>
-      {% endfor %}
       {% else %}
-        <p><br />Пока нет ресторанов</p>
+        <p><br />Пока нет info</p>
       {% endif %}
 
         <!-- /item list -->
