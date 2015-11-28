@@ -1,4 +1,5 @@
 from django.db import models
+from rating.models import Rating
 
 
 class Restaurant(models.Model):
@@ -8,6 +9,11 @@ class Restaurant(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_full_rating(self):
+        cur_rating = Rating.objects.get(pk=self.id)
+        #if cur_rating:
+
 
 
 class Photo(models.Model):

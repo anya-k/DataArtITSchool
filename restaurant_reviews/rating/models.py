@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-from restaurant.models import Restaurant
+#from restaurant.models import Restaurant
 
 
 class Category(models.Model):
@@ -23,7 +23,7 @@ class Rating(models.Model):
         (4, 4),
         (5, 5),
     )
-    restaurant = models.ForeignKey(Restaurant)
+    restaurant = models.ForeignKey('restaurant.Restaurant')
     category = models.ForeignKey(Category)
     value = models.IntegerField(choices=STARS_CHOICES)
 
