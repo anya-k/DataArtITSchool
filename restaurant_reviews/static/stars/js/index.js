@@ -1,17 +1,18 @@
 jQuery(document).ready(function () {
   var count = 4;
   var parent = '#rate';
-  for(var i=0; i < count; ++i) {
-    var starHtml = '<input class="rating-input" type="number" />';
-    $( starHtml ).attr('id',i).appendTo($( parent));
-  }
+  //for(var i=0; i < count; ++i) {
+  //  var starHtml = '<input class="rating-input" type="number" />';
+  //  $( starHtml ).attr('id',i).appendTo($( parent));
+  //}
 
   $('.rating-input').rating({
     min: 0,
     max: 5,
     step: 1,
-    size: 'lg',
+    size: 'sm',
     showClear: false,
+    disabled:true,
     showCaption:false
   });
 
