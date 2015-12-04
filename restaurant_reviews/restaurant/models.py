@@ -26,6 +26,10 @@ class Restaurant(models.Model):
         result /= sum_percent_importance
         return format(result, '.2f')
 
+    def get_photos(self):
+        list_photos = Photo.objects.filter(restaurant=self.id)
+        return list_photos
+
 
 class Photo(models.Model):
     restaurant = models.ForeignKey(Restaurant)
