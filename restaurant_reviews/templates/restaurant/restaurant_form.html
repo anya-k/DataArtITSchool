@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %} Add restaurant {% endblock title %}
+{% block nav_class_add_rest %}active{% endblock %}
+
+
+{% block content %}
+  {% if form %}
+   <h3>Создание</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ rest_formset.form.as_p }}
+    <input type="submit" class="btn btn-primary" value="Создать" />
+    <a href="{% url 'restaurant:index' %}">
+      <input type="button" class="btn btn-primary" name="Cancel" value="Отмена" />
+    </a>
+
+
+  </form>
+  {% endif %}
+
+
+{% endblock content %}

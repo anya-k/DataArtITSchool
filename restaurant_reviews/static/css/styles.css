@@ -26,7 +26,7 @@ body{
     color:#fff;
 }
 
-.navbar-custom li>a:hover,.navbar-custom li>a:focus {
+.navbar-custom li>a:hover,.navbar-custom li>a:focus, .navbar-custom li.active {
 	background-color:#49bfff;
 }
 

@@ -27,9 +27,15 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li class="{% block nav_class_main %}{% endblock %}">
+          <a href="{% url 'restaurant:index' %}">Home</a>
+        </li>
+        <li class="{% block nav_class_li2 %}{% endblock %}">
+          <a href="{% url 'restaurant:add_rest2' %}">Add restaurant2</a>
+        </li>
+        <li class="{% block nav_class_add_rest %}{% endblock %}">
+          <a href="{% url 'restaurant:add_rest' %}">Add restaurant</a>
+        </li>
         <li>&nbsp;</li>
       </ul>
       <form class="navbar-form">
