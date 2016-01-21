@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -5,6 +6,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.contrib import messages
 import logging
 logger = logging.getLogger(__name__)
 from models import Restaurant
@@ -29,27 +32,47 @@ class RestaurantDetailView(DetailView):
 class RestaurantCreateView(CreateView):
     model = Restaurant
     form_class = RestaurantForm
-    formset_class = RestaurantFormSet
     success_url = reverse_lazy('restaurant:index')
 
+    def get(self, request, *args, **kwargs):
+        """
+        Handles GET requests and instantiates blank versions of the form
+        and its inline formsets.
+        """
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        rest_formset = RestaurantFormSet()
+        return self.render_to_response(
+            self.get_context_data(form=form,
+                                  rest_formset=rest_formset))
 
-def submit_rest(request):
-    if request.POST:
-        form = RestaurantForm(request.POST)
+    def post(self, request, *args, **kwargs):
+        """
+        Handles POST requests, instantiating a form instance and its inline
+        formsets with the passed POST variables and then checking them for
+        validity.
+        """
+        self.object = None
+        form = RestaurantForm(self.request.POST)
         if form.is_valid():
             saved_rest = form.save(commit=False)
-            rest_formset = RestaurantFormSet(request.POST, instance=saved_rest)
+            rest_formset = RestaurantFormSet(self.request.POST, instance=saved_rest)
             if rest_formset.is_valid():
                 saved_rest.save()
                 rest_formset.save()
-                # return HttpResponseRedirect(reverse('recipes_submit_posted'))
-    else:
-        form = RestaurantForm()
-        rest_formset = RestaurantFormSet(instance=Restaurant())
-    return render_to_response("restaurant/restaurant_form.html", {
-        "form": form,
-        "rest_formset": rest_formset,
-    }, context_instance=RequestContext(request))
+                return HttpResponseRedirect(reverse_lazy('restaurant:index'))
+
+    def form_valid(self, form):
+        logger.info("Form create restaurant success")
+        response = super(RestaurantCreateView, self).form_valid(form)
+        messages.success(self.request, u'Rest {0} успешно добавлен'.format(self.object.name))
+        return response
+
+    def form_invalid(self, form):
+        response = super(RestaurantCreateView, self).form_valid(form)
+        logger.error("Form create restaurant invalid!")
+        return response
 
 
 class RestaurantUpdateView(UpdateView):

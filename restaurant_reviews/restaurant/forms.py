@@ -17,4 +17,4 @@ RestaurantFormSet = inlineformset_factory(Restaurant,
                                           Rating,
                                           extra=0,
                                           can_delete=False,
-                                          fields = '__all__')
+                                          exclude=('restaurant',))

@@ -23,7 +23,8 @@ class Restaurant(models.Model):
             cur_category = Category.objects.get(id=cur_rating.category.id)
             sum_percent_importance += cur_category.percent_importance
             result += cur_rating.value * cur_category.percent_importance
-        result /= sum_percent_importance
+        if sum_percent_importance:
+            result /= sum_percent_importance
         return format(result, '.2f')
 
     def get_photos(self):
