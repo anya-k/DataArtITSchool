@@ -81,3 +81,5 @@ class RestaurantUpdateView(UpdateView):
 
 class RestaurantDeleteView(DeleteView):
     model = Restaurant
+    success_url = reverse_lazy('restaurant:index')
+
