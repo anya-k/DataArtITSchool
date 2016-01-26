@@ -59,8 +59,19 @@
     </div>
 </div>
 
-{% block content %}
-{% endblock content %}
+<div class="container-fluid" id="main">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+  {% block content %}
+  {% endblock content %}
+    </div>
+
+    <div id="map-canvas" class="col-xs-push-1 col-xs-10 col-sm-push-0 col-sm-4">
+      <!--map-canvas will be postioned here-->
+      <div class="row">
+      </div>
+    </div>
+
+</div>
 
 
 	<!-- script references -->

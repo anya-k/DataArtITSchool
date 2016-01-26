@@ -16,14 +16,17 @@
 {% endblock additional_css %}
 
 {% block content %}
-<div class="container-fluid" id="main">
-    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
         <!-- item list -->
       {% if restaurant %}
       <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="page-header">
               <h1>{{ restaurant.name }} <small></small></h1>
+              <form action="{% url 'restaurant:edit_rest' restaurant.id %}">
+                <button type="submit" class="btn btn-primary" value="Edit">
+                  <span class="glyphicon glyphicon-pencil"></span> Редактировать
+                </button>
+              </form>
             </div>
               <p>{{ restaurant.text_review }}</p>
               <hr>
@@ -85,18 +88,6 @@
       {% endif %}
 
         <!-- /item list -->
-
-    </div>
-
-    <div id="map-canvas" class="col-xs-push-1 col-xs-10 col-sm-push-0 col-sm-4">
-      <!--map-canvas will be postioned here-->
-      <div class="row">
-      </div>
-    </div>
-
-</div>
-<!-- end template -->
-
 
 
 {% endblock content %}

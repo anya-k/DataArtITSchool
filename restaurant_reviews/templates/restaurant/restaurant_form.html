@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'restaurant/restaurant_detail.html' %}
 {% load staticfiles %}
-
+{% load tags %}
 
 {% block title %} Add restaurant {% endblock title %}
 {% block nav_class_add_rest %}active{% endblock %}
@@ -12,8 +12,25 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    {{ rest_formset.management_form }}
-    {{ rest_formset.form.as_p }}
+
+{#    {% if rest_formset %}#}
+{#      {{ rest_formset.management_form }}#}
+{#      {{ rest_formset.form.as_p }}#}
+{#    {% endif %}#}
+
+    {% if category_all %}
+
+        <form class="form-horizontal">
+        <div class="form-group" class="col-sm-6">
+        {% for cur_category in category_all %}
+           <label class="col-sm-2 control-label"><br/>{{ cur_category.name }}</label>
+           <input class="rating-input" type="number" id="{{ forloop.counter }}"
+                  value="{{ restaurant|by_category:cur_category.id }}" />
+        {% endfor %}
+        </div>
+        </form>
+
+    {% endif %}
 
     <input type="submit" class="btn btn-primary" value="Создать" />
     <a href="{% url 'restaurant:index' %}">

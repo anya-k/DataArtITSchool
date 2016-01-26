@@ -12,6 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 from models import Restaurant
 from forms import RestaurantForm, RestaurantFormSet
+from rating.models import Category
 
 
 class RestaurantListView(ListView):
@@ -77,6 +78,20 @@ class RestaurantCreateView(CreateView):
 
 class RestaurantUpdateView(UpdateView):
     model = Restaurant
+    form_class = RestaurantForm
+    success_url = reverse_lazy('restaurant:index')
+
+    def get_context_data(self, **kwargs):
+        context = super(RestaurantUpdateView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['form'] = RestaurantForm(self.request.POST, instance=self.object)
+            context['rest_formset'] = RestaurantFormSet(self.request.POST, instance=self.object)
+        else:
+            context['form'] = RestaurantForm(instance=self.object)
+            context['rest_formset'] = RestaurantFormSet(instance=self.object)
+            context['restaurant'] = self.object
+            context['category_all'] = Category.objects.all()
+        return context
 
 
 class RestaurantDeleteView(DeleteView):

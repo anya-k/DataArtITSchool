@@ -6,17 +6,13 @@
 
 
 {% block content %}
-<div class="container-fluid" id="main">
-  <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-    <h3>Вы уверены, что хотите удалить все данные о ресторане {{ object.name }}? </h3>
-    <form method="post">
-      {% csrf_token %}
-      <input type="submit" class="btn btn-primary" name="Delete" value="Удалить" />
-      <a href="{% url 'restaurant:index' %}">
-          <input type="button" class="btn btn-primary" name="Cancel" value="Отмена" />
-      </a>
-    </form>
+  <h3>Вы уверены, что хотите удалить все данные о ресторане {{ object.name }}? </h3>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-primary" name="Delete" value="Удалить" />
+    <a href="{% url 'restaurant:index' %}">
+        <input type="button" class="btn btn-primary" name="Cancel" value="Отмена" />
+    </a>
+  </form>
     <br />
-  </div>
-</div>
 {% endblock content %}
