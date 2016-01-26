@@ -35,18 +35,33 @@ class RestaurantCreateView(CreateView):
     form_class = RestaurantForm
     success_url = reverse_lazy('restaurant:index')
 
-    def get(self, request, *args, **kwargs):
-        """
-        Handles GET requests and instantiates blank versions of the form
-        and its inline formsets.
-        """
-        self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        rest_formset = RestaurantFormSet()
-        return self.render_to_response(
-            self.get_context_data(form=form,
-                                  rest_formset=rest_formset))
+    # def get(self, request, *args, **kwargs):
+    #     """
+    #     Handles GET requests and instantiates blank versions of the form
+    #     and its inline formsets.
+    #     """
+    #     self.object = None
+    #     form_class = self.get_form_class()
+    #     form = self.get_form(form_class)
+    #     rest_formset = RestaurantFormSet()
+    #     return self.render_to_response(
+    #         self.get_context_data(form=form,
+    #                               rest_formset=rest_formset))
+
+    def get_context_data(self, **kwargs):
+        context = super(RestaurantCreateView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['form'] = RestaurantForm(self.request.POST, instance=self.object)
+            context['rest_formset'] = RestaurantFormSet(self.request.POST, instance=self.object)
+            context['restaurant'] = self.object
+            context['category_all'] = Category.objects.all()
+        else:
+            self.object = None
+            context['form'] = RestaurantForm(instance=self.object)
+            context['rest_formset'] = RestaurantFormSet(instance=self.object)
+            context['restaurant'] = self.object
+            context['category_all'] = Category.objects.all()
+        return context
 
     def post(self, request, *args, **kwargs):
         """
@@ -86,6 +101,8 @@ class RestaurantUpdateView(UpdateView):
         if self.request.POST:
             context['form'] = RestaurantForm(self.request.POST, instance=self.object)
             context['rest_formset'] = RestaurantFormSet(self.request.POST, instance=self.object)
+            context['restaurant'] = self.object
+            context['category_all'] = Category.objects.all()
         else:
             context['form'] = RestaurantForm(instance=self.object)
             context['rest_formset'] = RestaurantFormSet(instance=self.object)

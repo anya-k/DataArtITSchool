@@ -5,6 +5,8 @@ register = template.Library()
 
 @register.filter
 def by_category(self, category_id):
+    if not self:
+        return 0
     list_rating = self.get_category_rating()
     if not list_rating.filter(id=category_id).exists():
         return 0
