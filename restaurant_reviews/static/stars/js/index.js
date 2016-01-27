@@ -1,4 +1,8 @@
-jQuery(document).ready(function () {
+//jQuery(document).ready(function(){
+//    start(false)
+//});
+
+function start(value) {
   var count = 4;
   var parent = '#rate';
   //for(var i=0; i < count; ++i) {
@@ -12,7 +16,8 @@ jQuery(document).ready(function () {
     step: 1,
     size: 'sm',
     showClear: false,
-    disabled:true,
+    disabled:value,
+    //disabled:false,
     showCaption:false
   });
 
@@ -22,4 +27,4 @@ jQuery(document).ready(function () {
     alert(source.attr('id')+' '+ val);
   });
 
-});
+}
