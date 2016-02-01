@@ -2,16 +2,26 @@
 {% load staticfiles %}
 {% load tags %}
 
-{% block title %} Add restaurant {% endblock title %}
+{% block title %}  {{ page_title }} {% endblock title %}
 {% block nav_class_add_rest %}active{% endblock %}
 
 
 {% block content %}
   {% if form %}
-   <h3>Создание</h3>
+   <h3>{{ h3_title }}</h3>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+
+{#  {% for field in form %}#}
+{#    <div class="fieldWrapper">#}
+{#        {{ field.errors }}#}
+{#        {{ field.label_tag }} {{ field }}#}
+{#        {% if field.help_text %}#}
+{#        <p class="help">{{ field.help_text|safe }}</p>#}
+{#        {% endif %}#}
+{#    </div>#}
+{#  {% endfor %}#}
 
 {#    {% if rest_formset %}#}
 {#      {{ rest_formset.management_form }}#}
@@ -20,7 +30,6 @@
 
     {% if category_all %}
 
-        <form class="form-horizontal">
         <div class="form-group" class="col-sm-6">
         {% for cur_category in category_all %}
            <label class="col-sm-2 control-label"><br/>{{ cur_category.name }}</label>
@@ -28,7 +37,6 @@
                   value="{{ restaurant|by_category:cur_category.id }}" />
         {% endfor %}
         </div>
-        </form>
 
     {% endif %}
 

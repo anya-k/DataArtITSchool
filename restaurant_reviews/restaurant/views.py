@@ -12,7 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 from models import Restaurant
 from forms import RestaurantForm, RestaurantFormSet
-from rating.models import Category
+from rating.models import Category, Rating
 
 
 class RestaurantListView(ListView):
@@ -50,6 +50,8 @@ class RestaurantCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(RestaurantCreateView, self).get_context_data(**kwargs)
+        context['page_title'] = 'Создание'
+        context['h3_title'] = 'Создание'
         if self.request.POST:
             context['form'] = RestaurantForm(self.request.POST, instance=self.object)
             context['rest_formset'] = RestaurantFormSet(self.request.POST, instance=self.object)
@@ -98,6 +100,8 @@ class RestaurantUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(RestaurantUpdateView, self).get_context_data(**kwargs)
+        context['page_title'] = 'Редактирование'
+        context['h3_title'] = 'Редактирование данных'
         if self.request.POST:
             context['form'] = RestaurantForm(self.request.POST, instance=self.object)
             context['rest_formset'] = RestaurantFormSet(self.request.POST, instance=self.object)
@@ -109,6 +113,27 @@ class RestaurantUpdateView(UpdateView):
             context['restaurant'] = self.object
             context['category_all'] = Category.objects.all()
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        rating_form = Rating(self.request.POST)
+        if form.is_valid() and rating_form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        logger.info("Form update restaurant success")
+        response = super(RestaurantUpdateView, self).form_valid(form)
+        messages.success(self.request, u'Ресторан {0} успешно изменен'.format(self.object.name))
+        return response
+
+    def form_invalid(self, form):
+        response = super(RestaurantUpdateView, self).form_valid(form)
+        logger.error("Form update restaurant invalid!")
+        return response
 
 
 class RestaurantDeleteView(DeleteView):
