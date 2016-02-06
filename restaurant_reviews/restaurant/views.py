@@ -98,42 +98,31 @@ class RestaurantUpdateView(UpdateView):
     form_class = RestaurantForm
     success_url = reverse_lazy('restaurant:index')
 
-    def get_context_data(self, **kwargs):
-        context = super(RestaurantUpdateView, self).get_context_data(**kwargs)
-        context['page_title'] = 'Редактирование'
-        context['h3_title'] = 'Редактирование данных'
-        if self.request.POST:
-            context['form'] = RestaurantForm(self.request.POST, instance=self.object)
-            context['rest_formset'] = RestaurantFormSet(self.request.POST, instance=self.object)
-            context['restaurant'] = self.object
-            context['category_all'] = Category.objects.all()
-        else:
-            context['form'] = RestaurantForm(instance=self.object)
-            context['rest_formset'] = RestaurantFormSet(instance=self.object)
-            context['restaurant'] = self.object
-            context['category_all'] = Category.objects.all()
-        return context
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        expense_line_item_form = RestaurantFormSet(instance=self.object)
+        return self.render_to_response(self.get_context_data(form=form, formset=expense_line_item_form))
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        rating_form = Rating(self.request.POST)
-        if form.is_valid() and rating_form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+        expense_line_item_form = RestaurantFormSet(self.request.POST, instance=self.object)
 
-    def form_valid(self, form):
-        logger.info("Form update restaurant success")
-        response = super(RestaurantUpdateView, self).form_valid(form)
-        messages.success(self.request, u'Ресторан {0} успешно изменен'.format(self.object.name))
-        return response
+        if (form.is_valid() and expense_line_item_form.is_valid()):
+            return self.form_valid(form, expense_line_item_form)
+        return self.form_invalid(form, expense_line_item_form)
 
-    def form_invalid(self, form):
-        response = super(RestaurantUpdateView, self).form_valid(form)
-        logger.error("Form update restaurant invalid!")
-        return response
+    def form_valid(self, form, expense_line_item_form):
+        self.object = form.save()
+        expense_line_item_form.instance = self.object
+        expense_line_item_form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form, expense_line_item_form):
+        return self.render_to_response(self.get_context_data(form=form, expense_line_item_form=expense_line_item_form))
 
 
 class RestaurantDeleteView(DeleteView):

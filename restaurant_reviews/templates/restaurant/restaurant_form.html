@@ -13,32 +13,28 @@
     {% csrf_token %}
     {{ form.as_p }}
 
-{#  {% for field in form %}#}
-{#    <div class="fieldWrapper">#}
-{#        {{ field.errors }}#}
-{#        {{ field.label_tag }} {{ field }}#}
-{#        {% if field.help_text %}#}
-{#        <p class="help">{{ field.help_text|safe }}</p>#}
-{#        {% endif %}#}
-{#    </div>#}
-{#  {% endfor %}#}
+    {{ formset.management_form }}
+{#    {% for form_in_set in formset %}#}
+{#      {{ form_in_set.category.value }}#}
+{#      <br><br>#}
+{#    {% endfor %}#}
 
-{#    {% if rest_formset %}#}
-{#      {{ rest_formset.management_form }}#}
-{#      {{ rest_formset.form.as_p }}#}
-{#    {% endif %}#}
-
-    {% if category_all %}
-
-        <div class="form-group" class="col-sm-6">
-        {% for cur_category in category_all %}
+      <div class="form-group" class="col-sm-6">
+        {% for cur_category in formset.empty_form.fields.category.queryset %}
            <label class="col-sm-2 control-label"><br/>{{ cur_category.name }}</label>
-           <input class="rating-input" type="number" id="{{ forloop.counter }}"
-                  value="{{ restaurant|by_category:cur_category.id }}" />
+           <input class="rating-input" type="number" id="{{ cur_category.id }}"
+                  {% for form_in_set in formset %}
+                    {% if form_in_set.category.value == cur_category.id %}
+                        value="{{ form_in_set.value.value }}"
+                        name="{{ form_in_set.category.value }}"
+                    {% endif %}
+                  {% empty %}
+{#                  value="{{ form.restaurant|by_category:cur_category.id }}"#}
+                  value="5"
+                  {% endfor %}
+                   />
         {% endfor %}
         </div>
-
-    {% endif %}
 
     <input type="submit" class="btn btn-primary" value="Создать" />
     <a href="{% url 'restaurant:index' %}">
